@@ -1,0 +1,39 @@
+<mat-toolbar color="primary">
+  <span>Settings</span>
+</mat-toolbar>
+
+<div class="container">
+  <form
+    *ngIf="userModel"
+    #editForm="ngForm"
+    fxLayout.gt-sm="column"
+    fxFlex.gt-sm="40%"
+    class="fieldsColumn"
+  >
+    <strong class="label">Username: </strong>
+    <mat-form-field class="full-width-input">
+      <input
+        matInput
+        name="username"
+        required
+        autofocus
+        [(ngModel)]="userModel.username"
+      />
+      <mat-error>Username cannot be empty</mat-error>
+    </mat-form-field>
+    <strong class="label">Email: </strong>
+    <mat-form-field class="full-width-input">
+      <input
+        matInput
+        name="email"
+        required
+        autofocus
+        [(ngModel)]="userModel.email"
+      />
+      <mat-error>Email cannot be empty</mat-error>
+    </mat-form-field>
+    <button mat-raised-button id="saveButton" color="primary" (click)="save()">
+      Save
+    </button>
+  </form>
+</div>

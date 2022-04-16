@@ -1,0 +1,28 @@
+.image {
+    padding: 10px;
+}
+
+.border {
+    padding: 10px;
+}
+
+.header {
+    font-size: medium;
+    font-weight: bold;
+}
+
+.label {
+    font-weight: bold;
+}
+
+.posting-image {
+    margin: 0;
+    width: 100%;
+}
+
+.button-text {
+    display: in-line;
+    margin-top: 10px;
+    line-height: 18px;
+    font-size: medium;
+}

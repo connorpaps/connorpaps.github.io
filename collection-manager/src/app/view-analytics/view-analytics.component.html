@@ -1,0 +1,100 @@
+<div class="contents">
+  <!--Header-->
+  <mat-toolbar color="primary">
+    <span
+      >Website Analytics - Last Updated {{ currentDate | date: "short" }}</span
+    >
+  </mat-toolbar>
+  <!--Image Section-->
+  <mat-card class="my-card">
+    <div class="content">
+      <div fxLayout="row wrap" fxLayoutGap="16px grid">
+        <div fxFlex="50%" fxFlex.xs="100%" fxFlex.sm="33%">
+          <mat-card class="mat-elevation-z4">
+            <mat-card-header>
+              <mat-card-title>Total Website Visits</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <p class="paragraphData">Data to be added this week..</p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div fxFlex="50%" fxFlex.xs="100%" fxFlex.sm="33%">
+          <mat-card class="mat-elevation-z4">
+            <mat-card-header>
+              <mat-card-title>Total Documents Created</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <p class="paragraphData">
+                Total Articles Created: {{ docData.number_of_articles }}
+              </p>
+              <p class="paragraphData">
+                Total Collections Created: {{ docData.number_of_collections }}
+              </p>
+              <p class="paragraphData">
+                Total Collection Items Created: {{ docData.number_of_items }}
+              </p>
+              <p class="paragraphData">
+                Total Listings Created: {{ docData.number_of_listings }}
+              </p>
+              <p class="paragraphData">
+                Total Storages Created: {{ docData.number_of_storage }}
+              </p>
+              <p class="paragraphData">
+                Total Users Created: {{ docData.number_of_users }}
+              </p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div fxFlex="50%" fxFlex.xs="100%" fxFlex.sm="33%">
+          <mat-card class="mat-elevation-z4">
+            <mat-card-header>
+              <mat-card-title>Website Activity Graph</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div style="display: block">
+                <canvas
+                  baseChart
+                  width="400"
+                  height="300"
+                  [datasets]="lineChartData"
+                  [labels]="lineChartLabels"
+                  [options]="lineChartOptions"
+                  [colors]="lineChartColors"
+                  [legend]="lineChartLegend"
+                  [chartType]="lineChartType"
+                  [plugins]="lineChartPlugins"
+                >
+                </canvas>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div fxFlex="50%" fxFlex.xs="100%" fxFlex.sm="33%">
+          <mat-card class="mat-elevation-z4">
+            <mat-card-header>
+              <mat-card-title>Page Visits By Category</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="chart-wrapper">
+                <canvas
+                  baseChart
+                  width="400"
+                  height="300"
+                  [datasets]="barChartData"
+                  [labels]="barChartLabels"
+                  [options]="barChartOptions"
+                  [colors]="barChartColors"
+                  [plugins]="barChartPlugins"
+                  [legend]="barChartLegend"
+                  [chartType]="barChartType"
+                >
+                </canvas>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>

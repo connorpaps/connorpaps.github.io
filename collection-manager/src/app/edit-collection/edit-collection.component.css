@@ -1,0 +1,47 @@
+.card-wrapper {
+  position: fixed;
+  top: 8%;
+  left: 15%;
+  right: 15%;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.space-top {
+  margin-top: 5%;
+}
+
+.imageColumn {
+  margin-left: 20px;
+}
+
+.imageColumn img {
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.imageColumn a {
+  text-align: center;
+}
+
+.textColumn {
+  margin-left: 40px;
+  margin-top: 15px;
+}
+
+.textColumn p {
+  font-size: large;
+  margin-bottom: 50px;
+}
+
+.textColumn2 {
+  margin-left: 50px;
+  margin-top: 20px;
+}
+
+.submitCollection {
+  margin-top: 60%;
+}

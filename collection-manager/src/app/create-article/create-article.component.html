@@ -1,0 +1,80 @@
+<!--Header-->
+<mat-toolbar color="primary">
+  <span>Knowledge Hub > Create Article</span>
+</mat-toolbar>
+<form (ngSubmit)="onSubmit()">
+  <!--Image Section-->
+  <mat-card class="my-card">
+    <!--Labels Section-->
+    <mat-card-content class="labelContent">
+      <label id="articleName">Article Title:</label>
+      <label id="category">Category:</label>
+      <label id="url">Website Link:</label>
+      <label id="summary">Article Summary:</label>
+    </mat-card-content>
+    <!--Fields Section-->
+    <mat-card-content>
+      <form class="my-form">
+        <mat-card-content>
+          <form class="my-form">
+            <mat-form-field class="full-width">
+              <mat-label>Enter title of your article..</mat-label>
+              <input
+                matInput
+                placeholder="Enter title of your article.."
+                name="articlename"
+                required
+                [(ngModel)]="articleModel.article_title"
+              />
+            </mat-form-field>
+            <select
+              [(ngModel)]="articleModel.article_category"
+              name="selectArticle"
+              class="selects"
+              required
+              aria-placeholder="asdasd"
+            >
+              <option value="" disabled selected>Choose your category..</option>
+              <option class="options">Guides</option>
+              <option class="options">Collections</option>
+              <option class="options">Market</option>
+              <option class="options">Organization</option>
+              <option class="options">Storage</option>
+              <option class="options">Chat</option>
+            </select>
+            <mat-form-field class="full-width">
+              <mat-label>Enter the full url of the help website..</mat-label>
+              <input
+                matInput
+                placeholder="Enter the full url of the help website.."
+                name="websiteurl"
+                required
+                class="selectsTwo"
+                [(ngModel)]="articleModel.article_url"
+              />
+            </mat-form-field>
+            <textarea
+              name="textarea"
+              required
+              [(ngModel)]="articleModel.article_summary"
+              class="textSummary"
+              placeholder="Enter information or instructions for your article.."
+            >
+            </textarea>
+          </form>
+        </mat-card-content>
+      </form>
+      <!--Submit/Preview Buttons-->
+      <mat-card-actions>
+        <button
+          mat-raised-button
+          type="submit"
+          color="primary"
+          id="createButton"
+        >
+          POST ARTICLE
+        </button>
+      </mat-card-actions>
+    </mat-card-content>
+  </mat-card>
+</form>

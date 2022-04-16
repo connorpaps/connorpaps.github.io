@@ -1,0 +1,58 @@
+<mat-toolbar color="primary">
+  <span>Find Users</span>
+  <!--search-->
+  <span>
+    <input
+      class="search-font"
+      id="searchBar"
+      placeholder="Search users"
+      type="text"
+      [(ngModel)]="query"
+    />
+    <button
+      mat-raised-button
+      class="search-font"
+      id="searchButton"
+      (click)="search()"
+    >
+      Search
+    </button>
+  </span>
+</mat-toolbar>
+
+<span>Count: {{ userCount }}</span>
+<hr style="margin-bottom: 1px;" />
+
+<div *ngIf="userCount == 0" style="margin-top: 20px">
+  <h1>{{ messageTitle }}</h1>
+  <p>{{ message }}</p>
+</div>
+
+<div class="content">
+  <div fxLayout="row wrap" fxLayoutGap="16px grid" style="width:100%">
+    <div
+      [fxFlex]="100 / gridColumns + '%'"
+      *ngFor="let user of users"
+      style="width:100%"
+    >
+      <!--card for each collection-->
+      <mat-card class="mat-elevation-z4 card">
+        <mat-card-header>
+          <mat-card-title>{{ user.username }}</mat-card-title>
+        </mat-card-header>
+        <hr style="margin-top: 1px; margin-bottom: 9px;">
+        <!--chat button-->
+        <mat-card-actions style="text-align:center">
+          <button
+            mat-raised-button
+            color="primary"
+            class="manage-button"
+            routerLink="/profile/{{ user._id }}"
+          >
+            View User
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+mat-toolbar {
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+#addArticle {
+  cursor: pointer;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.option {
+  cursor: pointer;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.option-selected {
+  border-bottom: 3px solid white;
+}
+
+.card-container,
+.card-container:hover,
+.card-container:active,
+.card-container:visited {
+  color: black;
+  text-decoration: none;
+  width: 100%;
+}
+
+.card-container {
+  transition: 0.3s ease;
+}
+
+.card {
+  margin-bottom: 10px;
+  background-color: rgb(250, 250, 250);
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.card-info {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+mat-icon {
+  margin-top: -4px;
+  vertical-align: middle;
+}

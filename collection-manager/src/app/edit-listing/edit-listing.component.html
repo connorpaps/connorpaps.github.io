@@ -1,0 +1,151 @@
+<!--Edit Listing-->
+<div class="content">
+    <mat-card>
+      <mat-card-content>
+        <form (ngSubmit)="onSubmit()">        
+        <h1>Editing Listing {{ listingName }}</h1>
+        <button
+          class="close-button"
+          aria-label="Close alert"
+          type="button"
+          (click)="onClose()"
+          data-close
+        >
+        <span aria-hidden="true">&times;</span>
+        </button>
+          <br />
+          <!--Listing Name-->
+          <mat-card 
+            fxLayout="row"
+            fxLayoutGap="15px"
+            fxLayoutAlign="start center"
+            class="cards"
+          >
+            <span class="spantext">Listing Name: </span>
+            <mat-form-field class="full-width-input">
+              <input
+                matInput
+                placeholder="Enter Listing Name..."
+                name="name"
+                required
+                autofocus
+                [(ngModel)]="listingModel.listing_name"
+              />
+              <mat-error>Listing name cannot be empty</mat-error>
+            </mat-form-field>
+          </mat-card>
+          <br />
+          <!--Description-->
+          <mat-card
+            fxLayout="row"
+            fxLayoutGap="15px"
+            fxLayoutAlign="start center"
+            class="cards"
+          >
+            <span class="spantext">Description: </span>
+            <mat-form-field class="full-width-input">
+              <input
+                matInput
+                placeholder="Enter Description..."
+                name="description"
+                required
+                [(ngModel)]="listingModel.listing_description"
+              />
+              <mat-error>Description cannot be empty</mat-error>
+            </mat-form-field>
+          </mat-card>
+          <br />
+          <!--Category-->
+          <mat-card
+            fxLayout="row"
+            fxLayoutGap="15px"
+            fxLayoutAlign="start center"
+            class="cards"
+          >
+            <span class="spantext">Category: </span>
+            <mat-form-field class="full-width-input">
+              <input
+                matInput
+                placeholder="Enter Category..."
+                name="catgeory"
+                required
+                [(ngModel)]="listingModel.listing_category"
+              />
+              <mat-error>Category cannot be empty</mat-error>
+            </mat-form-field>
+          </mat-card>
+          <br />
+          <!--Condition-->
+          <mat-card
+            fxLayout="row"
+            fxLayoutGap="15px"
+            fxLayoutAlign="start center"
+            class="cards"
+          >
+            <span class="spantext">Condition: </span>
+            <mat-form-field class="full-width-input">
+              <input
+                matInput
+                placeholder="Enter Condition..."
+                name="condition"
+                required
+                [(ngModel)]="listingModel.listing_condition"
+              />
+              <mat-error>Condition cannot be empty</mat-error>
+            </mat-form-field>
+          </mat-card>
+          <br />
+          <!--Price-->
+          <mat-card
+            fxLayout="row"
+            fxLayoutGap="15px"
+            fxLayoutAlign="start center"
+            class="cards"
+          >
+            <span class="spantext">Price: </span>
+            <mat-form-field class="full-width-input">
+              <input
+                matInput
+                placeholder="Enter Price..."
+                name="price"
+                required
+                (keypress)="onKeyPress($event)"
+                [(ngModel)]="listingModel.listing_price"
+              />
+              <mat-error>Price cannot be empty</mat-error>
+            </mat-form-field>
+          </mat-card>
+          <br />
+          <!--Location-->
+          <mat-card
+            fxLayout="row"
+            fxLayoutGap="15px"
+            fxLayoutAlign="start center"
+            class="cards"
+          >
+            <span class="spantext">Location: </span>
+            <mat-form-field class="full-width-input">
+              <input
+                matInput
+                placeholder="Enter Location..."
+                name="location"
+                required
+                [(ngModel)]="listingModel.listing_location"
+              />
+              <mat-error>Location cannot be empty</mat-error>
+            </mat-form-field>
+          </mat-card>
+          <br />
+  
+          <br />
+          <br />
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit">
+            <span>Edit Listing</span>     
+          </button>
+        </form>
+      </mat-card-content>    
+    </mat-card>  
+  </div>

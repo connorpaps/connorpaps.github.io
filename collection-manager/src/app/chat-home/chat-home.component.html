@@ -1,0 +1,146 @@
+<main class="content">
+    <div class="container p-0">
+
+		<div class="row">
+            <h1 class="h3 mb-3">Messages </h1>  
+			<mat-toolbar color="primary">
+				<span>Chat with Users</span>
+				<!--search-->
+				<span>
+				  <input
+					class="search-font"
+					id="searchBar"
+					placeholder="Search users"
+					type="text"
+					[(ngModel)]="query"
+				  />
+				  <button
+					mat-raised-button
+					class="search-font"
+					id="searchButton"
+					(click)="search()"
+				  >
+					Search
+				  </button>
+				</span>
+			  </mat-toolbar> 		  
+			  
+			  <div class="content">
+				<div fxLayout="row wrap" fxLayoutGap="16px grid" style="width:100%">
+				  <div
+					[fxFlex]="100 / gridColumns + '%'"
+					*ngFor="let user of users"
+					style="width:100%"
+				  >
+					<!--card for each collection-->
+					<mat-card class="mat-elevation-z4 card">
+					  <mat-card-header>
+						<mat-card-title>{{ user.username }}</mat-card-title>
+					  </mat-card-header>
+					  <hr style="margin-top: 1px; margin-bottom: 9px;">
+					  <!--chat button-->
+					  <mat-card-actions style="text-align:center">
+						<button
+						  mat-raised-button
+						  color="primary"
+						  class="manage-button"
+						  (click)="createConversation(user._id)"	
+						>
+						  Chat
+						</button>
+					  </mat-card-actions>
+					</mat-card>
+				  </div>
+				</div>
+			  </div>			  
+        </div>
+        
+		<div class="card">
+			<div class="row g-0">
+				<div class="col-12 col-lg-5 col-xl-3 border-right chat-list">		
+                    <h2 class="ml-3 mb-0 mt-2">Users</h2>					
+					<div class="ml-1 px-2 d-none d-md-block">
+						<div class="d-flex align-items-center">
+							<div class="flex-grow-1">
+								<input type="text" class="form-control my-3" placeholder="Search..." [(ngModel)] = "filteredString">
+							</div>
+						</div>
+					</div>
+
+                    <div *ngFor="let conversation of conversations | filter:filteredString" class="position-relative">
+                        <a class="list-group-item list-group-item-action border-0" (click)="loadMessages(conversation._id, conversation.username, conversation.other_participant_id)">
+						    <div class="d-flex align-items-start">
+							    <div >
+								    {{ conversation.username }}
+							    </div>
+								<button class="close" style="position: absolute; right: 0;" (click)="onDelete(conversation._id)">
+									<mat-icon>close</mat-icon> 
+								</button>
+						    </div>
+					    </a>
+					</div>					
+
+				<hr class="d-block d-lg-none mt-1 mb-0">
+				</div>
+				<div class="col-12 col-lg-7 col-xl-9">
+					<div class="py-2 px-4 border-bottom d-none d-lg-block">
+						<div class="d-flex align-items-center py-1">
+							<div class="position-relative">
+							</div>
+							<div class="flex-grow-1 pl-3">
+								<strong>{{ author }}</strong>
+							</div>
+						</div>
+					</div>				
+
+					<div class="position-relative">
+						<div class="chat-messages p-4">
+                            
+							<div *ngFor="let reply of replies">
+								<!-- if the author of this message is not the user, display this-->								
+								<div *ngIf="reply.author == author_id">
+									<div class="text-muted small text-nowrap mt-2">{{ reply.timestamp.toString() | date: 'MMM dd, h:mm a' }}</div>
+									<div class="chat-message-left pb-4">
+										
+										<div class="flex-shrink-1 bg-light rounded py-2 px-3">
+											<div class="font-weight-bold mb-1">{{ author }}</div>
+											{{ reply.body }}
+										</div>
+									</div>
+								</div>
+								<!-- if the author of this message is the user, display this-->								
+								<div *ngIf="reply.author != author_id">
+									<div class="text-muted small text-nowrap mt-2 chat-message-right">{{ reply.timestamp.toString() | date: 'MMM dd, h:mm a' }}</div>
+									<div class="chat-message-right pb-4">
+										<div class="flex-shrink-1 bg-light rounded py-2 px-3">
+											<div class="font-weight-bold mb-1">You</div>
+											{{ reply.body }}
+										</div>
+									</div>
+								</div>								
+							</div>
+						</div>
+					</div>
+					<div class="flex-grow-0 py-3 px-4 border-top">
+						<div class="input-group">
+							<input type="text" class="form-control" id="reply_message" name="reply_message" [(ngModel)]="reply_body" placeholder="Type your message" >
+							<button class="btn btn-primary" (click)="sendMessage()">Send</button>
+							<button mat-raised-button color="primary">
+								<mat-icon>attach_file</mat-icon> 
+							</button>
+							<button mat-raised-button color="primary">
+								<mat-icon>add_photo_alternate</mat-icon> 
+							</button>
+							<button mat-raised-button color="primary">
+								<mat-icon>assistant_photo</mat-icon> 
+							</button>
+							<button mat-raised-button color="primary">
+								<mat-icon>sentiment_satisfied_alt</mat-icon> 
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>

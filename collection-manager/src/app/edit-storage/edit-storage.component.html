@@ -1,0 +1,112 @@
+<!--Edit Storage Location-->
+<div class="content">
+  <mat-card>
+    <mat-card-content>
+      <form (ngSubmit)="onSubmit()">        
+      <h1>Editing Storage {{ storageName }}</h1>
+      <button
+          class="close-button"
+          aria-label="Close alert"
+          type="button"
+          (click)="onClose()"
+          data-close
+        >
+        <span aria-hidden="true">&times;</span>
+        </button>
+        <br />
+        <!--storage name-->
+        <mat-card 
+          fxLayout="row"
+          fxLayoutGap="15px"
+          fxLayoutAlign="start center"
+          class="cards"
+        >
+          <span class="spantext">Storage Name: </span>
+          <mat-form-field class="full-width-input">
+            <input
+              matInput
+              placeholder="Enter Storage Name..."
+              name="storagename"
+              required
+              autofocus
+              [(ngModel)]="storageModel.storage_name"
+            />
+            <mat-error>Storage name cannot be empty</mat-error>
+          </mat-form-field>
+        </mat-card>
+        <br />
+        <!--storage type-->
+        <mat-card
+          fxLayout="row"
+          fxLayoutGap="15px"
+          fxLayoutAlign="start center"
+          class="cards"
+        >
+          <span class="spantext">Storage Type: </span>
+          <mat-form-field class="full-width-input">
+            <input
+              matInput
+              placeholder="Enter Type..."
+              name="type"
+              required
+              [(ngModel)]="storageModel.storage_type"
+            />
+            <mat-error>Storage type cannot be empty</mat-error>
+          </mat-form-field>
+        </mat-card>
+        <br />
+        <!--storage location-->
+        <mat-card
+          fxLayout="row"
+          fxLayoutGap="15px"
+          fxLayoutAlign="start center"
+          class="cards"
+        >
+          <span class="spantext">Storage Location: </span>
+          <mat-form-field class="full-width-input">
+            <input
+              matInput
+              placeholder="Enter Location..."
+              name="location" 
+              required
+              [(ngModel)]="storageModel.storage_location"
+            />
+            <mat-error>Storage location cannot be empty</mat-error>
+          </mat-form-field>
+        </mat-card>
+        <br>
+        <!--labeling code-->
+        <mat-card
+          fxLayout="row"
+          fxLayoutGap="15px"
+          fxLayoutAlign="start center"
+          class="cards"
+        >
+        <span class="spantext">Labeling Code: </span>
+        <mat-form-field class="full-width-input">
+          <input
+            matInput
+            placeholder="Give this box a code... e.g. 001"
+            name="code"  
+            required     
+            (keypress)="onKeyPress($event)"  
+            [(ngModel)]="storageModel.storage_assigned_code"
+          />
+          <mat-error>Must assign a code to this storage box</mat-error>
+        </mat-form-field>
+        </mat-card>
+        <br />
+        <br />        
+        <!--submit button-->
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit" 
+          [disabled]="!storageModel.storage_name || !storageModel.storage_type || !storageModel.storage_location || !storageModel.storage_assigned_code"
+        >
+          <span>&nbsp;&nbsp;&nbsp;Edit Storage Location</span>     
+        </button>
+      </form>
+    </mat-card-content>    
+  </mat-card>  
+</div>

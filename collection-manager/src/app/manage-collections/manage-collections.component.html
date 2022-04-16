@@ -1,0 +1,88 @@
+<mat-toolbar color="primary">
+  <span>My Collections</span>
+  <!--search-->
+  <span>
+    <input
+      class="search-font"
+      id="searchBar"
+      placeholder="Search collections"
+      type="text"
+      [(ngModel)]="query"
+    />
+    <button
+      mat-raised-button
+      class="search-font"
+      id="searchButton"
+      (click)="search()"
+    >
+      Search
+    </button>
+  </span>
+  <!--add new collection-->
+  <span class="option" routerLink="/createcollection"
+    ><mat-icon>add</mat-icon>Collection</span
+  >
+</mat-toolbar>
+
+<span>Count: {{ collectionCount }}</span>
+<hr style="margin-bottom: 1px;" />
+
+<div *ngIf="collectionCount == 0" style="margin-top:20px;">
+  <h1>No Collections</h1>
+  <p>{{ message }}</p>
+</div>
+
+<div class="content">
+  <div fxLayout="row wrap" fxLayoutGap="16px grid" style="text-align: center">
+    <div
+      [fxFlex]="100 / gridColumns + '%'"
+      fxFlex.xs="100%"
+      fxFlex.sm="33%"
+      *ngFor="let collection of collections"
+    >
+      <!--card for each collection-->
+      <mat-card class="mat-elevation-z4">
+        <mat-card-header>
+          <mat-card-title>{{ collection.collection_name }}</mat-card-title>
+          <button
+            class="close-button"
+            aria-label="Close alert"
+            type="button"
+            (click)="deleteCollection(collection._id)"
+            data-close
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </mat-card-header>
+        <img
+          mat-card-image
+          src="{{ collection.collection_image.collection_image_path }}"
+          onerror="if (this.src != '../../assets/images/bluelogo.png') this.src = '../../assets/images/bluelogo.png';"
+          alt="{{ collection.collection_image.collection_image_alt_text }}"
+        />
+        <mat-card-content style="text-align: left;">
+          <p><strong>Description:</strong> {{ collection.collection_description }}</p>
+          <p *ngIf="collection.date_created"><strong>Date created:</strong> {{ collection.date_created }}</p>
+        </mat-card-content>
+        <!--view and edit buttons-->
+        <mat-card-actions>
+          <button
+            mat-raised-button
+            color="primary"
+            class="manage-button"
+            routerLink="/viewcollection/{{ collection._id }}"
+          >
+            View
+          </button>
+          <button
+            mat-button
+            class="manage-button"
+            routerLink="/editcollection/{{ collection._id }}"
+          >
+            Edit
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

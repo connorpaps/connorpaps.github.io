@@ -1,0 +1,112 @@
+<mat-toolbar color="primary">
+  <span>Marketplace</span>
+  <!--options to create a new selling, wanted, or trading listing-->
+  <span>
+    <span class="create-option" routerLink="/createsale"
+      ><mat-icon>add</mat-icon>New Sale</span
+    >
+    <span class="create-option" routerLink="/createwanted"
+      ><mat-icon>add</mat-icon>New Wanted</span
+    >
+    <span class="create-option" routerLink="/createtrade"
+      ><mat-icon>add</mat-icon>New Trade</span
+    >
+  </span>
+</mat-toolbar>
+
+<mat-toolbar class="another-toolbar">
+  <!--option to show the user's listings-->
+  <span class="create-option" routerLink="/mylistings" style="margin-left: 0;"
+    ><mat-icon>collections</mat-icon>Go To My Listings</span
+  >
+  <!--options to show either selling, wanted, and trading listings-->
+  <span>
+    <span
+      class="selector type-selected"
+      id="option-selling"
+      (click)="showSellingPostings()"
+      >Selling</span
+    >
+    <span class="selector" id="option-wanted" (click)="showWantedPostings()"
+      >Wanted</span
+    >
+    <span class="selector" id="option-trading" (click)="showTradingPostings()"
+      >Trading</span
+    >
+  </span>
+</mat-toolbar>
+
+<span>Count: {{ listingCount }}</span>
+<hr style="margin-bottom: 1px" />
+
+<div class="content">
+  <div fxLayout="row wrap" fxLayoutGap="16px grid" style="text-align: center">
+    <div
+      [fxFlex]="100 / gridColumns + '%'"
+      fxFlex.xs="100%"
+      fxFlex.sm="33%"
+      *ngFor="let post of postings"
+    >
+      <!--Card for a posting-->
+      <mat-card class="mat-elevation-z4">
+        <mat-card-header>
+          <mat-card-title>{{ post.name }}</mat-card-title>
+        </mat-card-header>
+        <img
+          mat-card-image
+          src="{{ post.image_path }}"
+          onerror="if (this.src != '../../assets/images/bluelogo.png') this.src = '../../assets/images/bluelogo.png';"
+          alt="{{ post.image_alt }}"
+        />
+        <!--Content for selling-->
+        <mat-card-content *ngIf="postType == 'selling'">
+          <p><strong>Description:</strong> {{ post.description }}</p>
+          <p *ngIf="post.category != 'N/A'">
+            <strong>Category:</strong> {{ post.category }}
+          </p>
+          <p *ngIf="post.condition != 'N/A'">
+            <strong>Condition:</strong> {{ post.condition }}
+          </p>
+          <p><strong>Price:</strong> ${{ post.price }}</p>
+          <p><strong>Date posted:</strong> {{ post.post_date }}</p>
+        </mat-card-content>
+        <!--Content for wanted-->
+        <mat-card-content *ngIf="postType == 'wanted'">
+          <p><strong>Description:</strong> {{ post.description }}</p>
+          <p *ngIf="post.category != 'N/A'">
+            <strong>Category:</strong> {{ post.category }}
+          </p>
+          <p *ngIf="post.condition != 'N/A'">
+            <strong>Condition:</strong> {{ post.condition }}
+          </p>
+          <p><strong>Price Range:</strong> ${{ post.price }}</p>
+          <p><strong>Date posted:</strong> {{ post.post_date }}</p>
+        </mat-card-content>
+        <!--Content for trading-->
+        <mat-card-content *ngIf="postType == 'trading'">
+          <p><strong>Description:</strong> {{ post.description }}</p>
+          <p *ngIf="post.category != 'N/A'">
+            <strong>Category:</strong> {{ post.category }}
+          </p>
+          <p *ngIf="post.condition != 'N/A'">
+            <strong>Condition:</strong> {{ post.condition }}
+          </p>
+          <p><strong>Date posted:</strong> {{ post.post_date }}</p>
+          <p><strong>Looking for:</strong> {{ post.wanted }}</p>
+        </mat-card-content>
+        <!--view button-->
+        <mat-card-actions>
+          <button
+            mat-raised-button
+            color="primary"
+            id="viewButton"
+            routerLink="/viewposting/{{ post.listing_id }}"
+          >
+            View Details
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <h2 *ngIf="postings.length == 0">No postings of this type!</h2>
+  </div>
+</div>

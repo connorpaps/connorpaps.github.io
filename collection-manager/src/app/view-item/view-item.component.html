@@ -1,0 +1,148 @@
+<div class="card-wrapper">
+  <div fxLayout="row">
+    <mat-card fxLayout="row" fxFlex="80%" class="center space-top">
+      <mat-card-content fxLayout.gt-sm="row">
+        <!--image selection-->
+        <div fxLayout.gt-sm="column" fxFlex.gt-sm="30%" class="imageColumn">
+          <div *ngIf="this.images.length > 0">
+            <img
+              mat-card-image
+              [src]="this.images[0].item_image_path"
+              alt="Item image"
+            />
+          </div>
+          <div *ngIf="this.images.length < 1">
+            <img
+              mat-card-image
+              src="./assets/images/bluelogo.png"
+              alt="Item image"
+            />
+          </div>
+
+          <!--Replace with proper image editing support-->
+          <button>Add Images</button>
+
+          <button>Edit item</button>
+        </div>
+        <div fxLayout.gt-sm="column" fxFlex.gt-sm="45%">
+          <div class="bordered-section">
+            <!--name field-->
+            <strong>Name</strong>
+            <span> {{ item.item_title }}</span
+            ><br />
+            <!--description field-->
+            <strong>Description</strong>
+            <span>{{ item.item_description }}</span
+            ><br />
+          </div>
+          <!--book template info-->
+          <div class="bordered-section min-height">
+            <!--name field-->
+            <h2>{{ this.template.template_type }}</h2>
+            <div *ngIf="this.item.template_name == 'book'">
+              <br /><button (click)="addTemplate()">Add template</button>
+            </div>
+            <div *ngIf="this.template.template_type === 'Book'">
+              <strong>Author</strong><br />
+              <span>{{ this.template.author }}</span
+              ><br /><br />
+
+              <strong>Publishing Date:</strong><br />
+              <span>{{ this.template.date_published }}</span
+              ><br /><br />
+
+              <strong>Publisher</strong><br />
+              <span>{{ this.template.publisher }}</span
+              ><br /><br />
+
+              <strong>Format</strong><br />
+              <span>{{ this.template.format }}</span
+              ><br /><br />
+
+              <strong>Edition</strong><br />
+              <span>{{ this.template.edition }}</span
+              ><br /><br />
+
+              <strong>Language</strong><br />
+              <span>{{ this.template.language }}</span
+              ><br /><br />
+
+              <strong>Pages</strong><br />
+              <span>{{ this.template.pages }}</span
+              ><br /><br />
+            </div>
+
+            <!-- Comic book template-->
+            <div *ngIf="this.item.template_name == 'comicBook'">
+              <strong>Publisher</strong><br />
+              <span>{{ this.template.publisher }}</span
+              ><br /><br />
+
+              <strong>Year</strong><br />
+              <span>{{ this.template.year }}</span
+              ><br /><br />
+
+              <strong>Characters</strong><br />
+              <div *ngFor="let character of this.template.characters">
+                <span>{{ character }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          fxLayout.gt-sm="column"
+          fxFlex.gt-sm="25%"
+          class="bordered-section min-height"
+        >
+          <div *ngIf="!this.item.storage_object_id">
+            <!--select storage location-->
+            <strong>Storage</strong>
+            <select
+              *ngIf="storages"
+              [(ngModel)]="itemStorage"
+              name="selectStorage"
+              class="selects"
+              style="margin-bottom: 20px"
+              required
+            >
+              <option
+                class="options"
+                *ngFor="let storage of storages"
+                [ngValue]="storage"
+              >
+                {{ storage.storage_name }}
+              </option>
+            </select>
+            <button (click)="addToStorage()">Add to Storage</button>
+          </div>
+
+          <div *ngIf="this.item.storage_object_id && itemStorage">
+            <!--Storage Fields-->
+            <div class="bordered-section">
+              <!--storage name field-->
+              <strong>Storage Name</strong>
+              <span>{{ itemStorage.storage_name }}</span
+              ><br />
+              <!--storage type field-->
+              <strong>Storage Type</strong>
+              <span>{{ itemStorage.storage_type }}</span
+              ><br />
+              <!--storage code field-->
+              <strong>Storage Code</strong>
+              <span>{{ itemStorage.storage_assigned_code }}</span
+              ><br />
+              <!--storage location field-->
+              <strong>Storage Location</strong>
+              <span>{{ itemStorage.storage_location }}</span
+              ><br />
+              <!--storage note field-->
+              <strong>Storage Notes</strong>
+              <span>{{ item.storage_note }}</span
+              ><br />
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

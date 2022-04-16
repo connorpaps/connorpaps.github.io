@@ -1,0 +1,58 @@
+<h1>Knowledge Hub</h1>
+<p>
+  Welcome to the Knowledge Hub! A repository of articles, news, tips, questions,
+  and answers to help you increase your efficiency and productivity with
+  organizing and communicating. Whether you're at work, at home, or even on
+  the go, there's always something to learn, just one search away!
+</p>
+<br />
+
+<mat-toolbar color="primary">
+  <!--search-->
+  <span id="option-selector">
+    <span
+      *ngFor="let category of categories"
+      class="option"
+      id="option-{{ category }}"
+      (click)="changeCategory(category)"
+    >
+      {{ category }}
+    </span>
+  </span>
+  <!--add new article button (must be administrator)-->
+  <span
+    *ngIf="role === 'administrator'"
+    id="addArticle"
+    routerLink="/createarticle"
+    ><mat-icon>add</mat-icon>Article</span
+  >
+</mat-toolbar>
+
+<span>Count: {{ articleCount }}</span>
+<hr />
+
+<div class="content">
+  <div *ngFor="let article of articles">
+    <a
+      class="card-container"
+      href="{{ article.article_url }}"
+      target="_blank"
+      *ngIf="categoryType == article.article_category || categoryType == 'All'"
+    >
+      <mat-card class="card">
+        <mat-card-header>
+          <mat-card-title>{{ article.article_title }}</mat-card-title>
+        </mat-card-header>
+        <div class="card-info">
+          <span
+            >{{ article.article_category }} -
+            {{ article.article_summary }}</span
+          >
+          <span class="spacer"></span>
+          <span>Posted: {{ article.article_posted_date }}</span>
+        </div>
+      </mat-card>
+    </a>
+  </div>
+  <h2 *ngIf="articles.length == 0">No articles</h2>
+</div>

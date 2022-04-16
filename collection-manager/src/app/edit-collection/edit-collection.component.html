@@ -1,0 +1,95 @@
+<!--Update with collection name from class data-->
+<h1>Manage Collections > Collection One</h1>
+<div class="card-wrapper">
+  <div fxLayout="row">
+    <mat-card fxLayout="row" fxFlex="80%" class="center space-top">
+      <mat-card-content fxLayout.gt-sm="row">
+        <!--1st Column for image/edit-->
+        <div fxLayout.gt-sm="column" fxFlex.gt-sm="40%" class="imageColumn">
+          <img
+            mat-card-image
+            src="{{collectionModel.collection_image.collection_image_path}}"
+            onerror="if (this.src != '../../assets/images/bluelogo.png') this.src = '../../assets/images/bluelogo.png';"
+            alt="{{collectionModel.collection_image.collection_image_alt_text}}"
+          />
+          <!--Replace with proper image editing support-->
+          <a href="">Edit Image</a>
+        </div>
+        <!--2nd Column for text names-->
+        <div fxLayout.gt-sm="column" fxFlex.gt-sm="40%" class="textColumn">
+          <p>Collection Name</p>
+          <p>Description</p>
+          <!-- <p>Storage Code</p> -->
+        </div>
+        <!--3rd Column for text fields-->
+        <form #editForm="ngForm" fxLayout.gt-sm="column" fxFlex.gt-sm="40%" class="fieldsColumn">
+          <mat-form-field class="full-width-input">
+            <input
+              matInput
+              name="collectionname"
+              required
+              autofocus
+              [(ngModel)]="collectionModel.collection_name"
+            />
+            <mat-error>Collection name cannot be empty.</mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width-input">
+            <textarea
+              matInput
+              name="description"
+              required
+              autofocus
+              [(ngModel)]="collectionModel.collection_description"
+            ></textarea>
+            <mat-error>Description cannot be empty.</mat-error>
+          </mat-form-field>
+          <!-- <mat-form-field class="full-width-input">
+            <input
+              matInput
+              placeholder="Storage Code"
+              name="storagecode"
+              required
+              autofocus
+            />
+            <mat-error>Storage code cannot be empty.</mat-error>
+          </mat-form-field> -->
+        </form>
+        <!--4th Column for created/date/reference-->
+        <div fxLayout.gt-sm="column" fxFlex.gt-sm="40%" class="textColumn2">
+          <p>Created: N/A</p>
+          <p>Last Updated: N/A</p>
+          <p>Reference Number: N/A</p>
+          <!--Update button with actual data updating in the ts-->
+          <button
+            (click)="onSubmit()"
+            mat-raised-button
+            color="accent"
+            type="submit"
+            class="submitCollection"
+          >
+            <p
+              style="
+                display: inline-flex;
+                align-items: center;
+                margin-top: 10px;
+                font-size: larger;
+              "
+            >
+              Update
+            </p>
+          </button>
+        </div>
+      </mat-card-content>
+      <mat-card-footer>
+        <button
+          class="closeCollection"
+          mat-button
+          (click)="onCloseCollection()"
+          id="closeX"
+        >
+          X
+        </button>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</div>

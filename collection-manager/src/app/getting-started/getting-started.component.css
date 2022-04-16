@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+  text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#header {
+  text-decoration: underline;
+}
+
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.headerDesc {
+  background-color: #1976d2;
+  border-radius: 8px;
+  color: white;
+}
+
+.headerDesc a {
+  color: white;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}

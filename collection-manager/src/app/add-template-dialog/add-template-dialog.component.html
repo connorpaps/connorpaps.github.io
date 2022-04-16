@@ -1,0 +1,103 @@
+<h2 mat-dialog-title>Add Template</h2>
+
+<mat-dialog-content>
+
+<p> Select Template to Upload </p>
+
+<!-- Options for template type-->
+<select name="template" [(ngModel)]="selected">
+    <option value="book">Book</option>
+    <option value="comic">Comic Book</option>
+    <option value="doll">Doll</option>
+    <option value="movie">Movie</option>
+    <option value="record">Record</option>
+    <option value="stamp">Stamp</option>
+    <option value="Card">Trading Card</option>
+    <option value="watch">Watch</option>
+</select>
+
+<!-- Book template options -->
+<div *ngIf="this.selected=='book'" >
+    <form #addItemForm="ngForm" (ngSubmit)="submitBookTemplate()">
+        <mat-form-field class="full-width-input">
+            <br>Author: <br>
+            <input matInput name="author" required autofocus [(ngModel)]="book.author" text-decoration: underline />
+            <mat-error>Author cannot be empty.</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="full-width-input">
+            Publishing date: <br>
+            <input matInput name="date_published" required autofocus [(ngModel)]="book.date_published" />
+            <mat-error>Publishing date cannot be empty.</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="full-width-input">
+            Publisher: <br>
+            <input matInput name="publisher" required autofocus [(ngModel)]="book.publisher" />
+            <mat-error>Publisher date cannot be empty.</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="full-width-input">
+            Format: <br>
+            <input matInput name="format" required autofocus [(ngModel)]="book.format" />
+            <mat-error>Format cannot be empty.</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="full-width-input">
+            Edition: <br>
+            <input matInput name="edition" required autofocus [(ngModel)]="book.edition" />
+        </mat-form-field>
+        <br>
+        <mat-form-field class="full-width-input">
+            Language: <br>
+            <input matInput name="language" required autofocus [(ngModel)]="book.language" />
+            <mat-error>Language cannot be empty.</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="full-width-input">
+            Pages: <br>
+            <input matInput name="pages" required autofocus [(ngModel)]="book.pages" />
+            <mat-error>Pages cannot be empty.</mat-error>
+        </mat-form-field>
+        <br>
+        <button class="mat-raised-button" >Add</button>
+        <br>
+    </form>
+</div>
+
+<!-- Comio template options-->
+<div *ngIf="this.selected=='comic'" >
+    <br>
+    <form>
+        <input name="chars" [(ngModel)]="char"/>
+        <button (click)="addChar()">Add character</button>
+    </form>
+
+    <br>
+    Characters: {{getChars()}}
+    <br>
+
+    <form #addItemForm="ngForm" (ngSubmit)="submitComicTemplate()">
+        <mat-form-field class="full-width-input">
+            Publisher: <br>
+            <input matInput name="publisher" required autofocus [(ngModel)]="comic.publisher" />
+            <mat-error>Publisher date cannot be empty.</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="full-width-input">
+            Publishing date: <br>
+            <input matInput name="year" required autofocus [(ngModel)]="comic.year" />
+            <mat-error>Publishing date cannot be empty.</mat-error>
+        </mat-form-field>
+        <br>
+        <button class="mat-raised-button" >Add</button>
+        <br>
+    </form>
+</div>
+
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="mat-raised-button" (click)="close()">Cancel</button>
+</mat-dialog-actions>

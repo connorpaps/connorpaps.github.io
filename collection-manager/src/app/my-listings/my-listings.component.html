@@ -1,0 +1,85 @@
+<mat-toolbar color="primary">
+  <span>My Market Listings</span>
+</mat-toolbar>
+
+<span>Count: {{ listingCount }}</span>
+<hr style="margin-bottom: 1px" />
+
+<div class="content">
+  <div fxLayout="row wrap" fxLayoutGap="16px grid" style="text-align: center">
+    <div
+      [fxFlex]="100 / gridColumns + '%'"
+      fxFlex.xs="100%"
+      fxFlex.sm="33%"
+      *ngFor="let post of postings"
+    >
+      <!--Card for a posting-->
+      <mat-card class="mat-elevation-z4">
+        <mat-card-header>
+          <mat-card-title>{{ post.name }}</mat-card-title>
+          <button
+            class="close-button"
+            aria-label="Close alert"
+            type="button"
+            (click)="deleteListing(post.listing_id)"
+            data-close
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </mat-card-header>
+        <img
+          mat-card-image
+          src="{{ post.image_path }}"
+          onerror="if (this.src != '../../assets/images/bluelogo.png') this.src = '../../assets/images/bluelogo.png';"
+          alt="{{ post.image_alt }}"
+        />
+        <p *ngIf="post.error" style="color:red">{{ post.error }}</p>
+        <!--Content for selling-->
+        <mat-card-content *ngIf="post.type == 'selling'">
+          <p><strong>Type:</strong> {{ post.type }}</p>
+          <p><strong>Description:</strong> {{ post.description }}</p>
+          <p *ngIf="post.category != 'N/A'">
+            <strong>Category:</strong> {{ post.category }}
+          </p>
+          <p *ngIf="post.condition != 'N/A'">
+            <strong>Condition:</strong> {{ post.condition }}
+          </p>
+          <p><strong>Price:</strong> ${{ post.price }}</p>
+          <p><strong>Date posted:</strong> {{ post.post_date }}</p>
+        </mat-card-content>
+        <!--Content for wanted-->
+        <mat-card-content *ngIf="post.type == 'wanted'">
+          <p><strong>Type:</strong> {{ post.type }}</p>
+          <p><strong>Description:</strong> {{ post.description }}</p>
+          <p *ngIf="post.category != 'N/A'">
+            <strong>Category:</strong> {{ post.category }}
+          </p>
+          <p *ngIf="post.condition != 'N/A'">
+            <strong>Condition:</strong> {{ post.condition }}
+          </p>
+          <p><strong>Price Range:</strong> ${{ post.price }}</p>
+          <p><strong>Date posted:</strong> {{ post.post_date }}</p>
+        </mat-card-content>
+        <!--Content for trading-->
+        <mat-card-content *ngIf="post.type == 'trading'">
+          <p><strong>Type:</strong> {{ post.type }}</p>
+          <p><strong>Description:</strong> {{ post.description }}</p>
+          <p *ngIf="post.category != 'N/A'">
+            <strong>Category:</strong> {{ post.category }}
+          </p>
+          <p *ngIf="post.condition != 'N/A'">
+            <strong>Condition:</strong> {{ post.condition }}
+          </p>
+          <p><strong>Date posted:</strong> {{ post.post_date }}</p>
+          <p><strong>Looking for:</strong> {{ post.wanted }}</p>
+        </mat-card-content>
+        <!--view and edit buttons-->
+        <mat-card-actions>
+            <button mat-raised-button color="primary" class="manage-button" routerLink="/viewposting/{{post.listing_id}}">View</button>
+            <button style="margin-right: 0;" mat-button class="manage-button" routerLink="/editlisting/{{post.listing_id}}">Edit</button>
+            <button style="margin-right: 0;" mat-button class="manage-button" (click)="promote(post.listing_id)">Promote</button>
+          </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

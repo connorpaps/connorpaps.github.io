@@ -1,0 +1,79 @@
+mat-toolbar {
+  justify-content: space-between;
+  min-width: 800px;
+  margin-bottom: 20px;
+}
+
+.content {
+  padding: 16px;
+  display: flex;
+}
+
+.content > mat-card {
+  margin-bottom: 16px;
+}
+
+.column-label {
+  margin-right: 8px;
+  font-size: 1rem;
+}
+
+.option {
+    cursor: pointer;
+    padding-left: 5px;
+    padding-right: 5px;
+    vertical-align: top;
+  }
+  
+  .option:hover,
+  .option:active {
+    color: #dddddd;
+  }
+
+.manageButton {
+  width: 50%;
+  box-shadow: 1px 1px 2px 2px #888888;
+  padding: 0px;
+}
+
+.search-font {
+  font-size: 15px;
+}
+
+#searchButton {
+  margin-left: 15px;
+  margin-right: 15px;
+  color: white;
+  background-color: rgb(25, 118, 210);
+}
+
+.close-button {
+  position: absolute;
+  border-radius: 5px;
+  right: 5px;
+  border: none;
+  font-size: x-large;
+  top: 5px;
+  cursor: pointer;
+  outline: none;
+}
+
+mat-card-actions {
+  display: inline;
+}
+
+.cards {
+  margin-top: 4%;
+  margin-bottom: 10%;
+  font-size: larger;
+}
+
+.centerspan {
+  display: table;
+  margin: 0 auto;
+}
+
+mat-icon {
+  margin-top: -4px;
+  vertical-align: middle;
+}

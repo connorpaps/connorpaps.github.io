@@ -1,0 +1,101 @@
+<!--Header-->
+<mat-toolbar>
+  <span>Trading Hub > Wanted</span>
+</mat-toolbar>
+<form (ngSubmit)="onSubmit()">
+  <!--Image Section-->
+  <mat-card class="my-card">
+    <mat-card-content class="imageContent">
+      <div fxLayout.gt-sm="column" fxFlex.gt-sm="40%" class="imageContent">
+        <img
+          src="../../assets/images/bluelogo.png"
+          alt="asdasd"
+          id="userImage"
+        />
+        <br />
+        <a href="">Add an image to show the seller what you want.</a>
+      </div>
+    </mat-card-content>
+    <!--Labels Section-->
+    <mat-card-content class="labelContent">
+      <label id="listingName">Listing Name:</label>
+      <label id="itemName">What are you looking for?</label>
+      <label id="description">Description of item:</label>
+      <label id="condition">Desired condition:</label>
+      <label id="price">Desired price range:</label>
+    </mat-card-content>
+    <!--Fields Section-->
+    <mat-card-content>
+      <form class="my-form">
+        <mat-card-content>
+          <form class="my-form">
+            <mat-form-field class="full-width">
+              <mat-label>Enter title of your post..</mat-label>
+              <input
+                matInput
+                placeholder="Enter title of your post.."
+                name="itemname"
+                required
+                [(ngModel)]="tradeModel.listing_name"
+              />
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-label>Enter name of what you want to buy..</mat-label>
+              <input
+                matInput
+                placeholder="Enter name of what you want to buy.."
+                name="itemname"
+                required
+                [(ngModel)]="tradeModel.item_wanted_name"
+              />
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-label>Enter details about the item you want..</mat-label>
+              <input
+                matInput
+                placeholder="Enter details about the item you want.."
+                name="description"
+                required
+                [(ngModel)]="tradeModel.listing_description"
+              />
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-label>Enter your desired item condition..</mat-label>
+              <input
+                matInput
+                placeholder="Enter your desired item condition.."
+                name="condition"
+                required
+                [(ngModel)]="tradeModel.listing_condition"
+              />
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-label>Enter your price range..</mat-label>
+              <input
+                matInput
+                placeholder="Enter your price range.."
+                name="price"
+                required
+                [(ngModel)]="tradeModel.listing_price"
+              />
+            </mat-form-field>
+          </form>
+        </mat-card-content>
+      </form>
+      <!--Submit/Preview Buttons-->
+      <mat-card-actions>
+        <button mat-raised-button color="primary" id="createButton">
+          PREVIEW
+        </button>
+        <button
+          mat-raised-button
+          type="submit"
+          color="primary"
+          id="createButton"
+        >
+          POST
+        </button>
+      </mat-card-actions>
+    </mat-card-content>
+  </mat-card>
+</form>

@@ -1,0 +1,100 @@
+<h1>Collection Items</h1>
+
+<mat-toolbar color="primary">
+  <span>{{ collectionDetails.collection_name }}</span>
+  <!--search-->
+  <span>
+    <input
+      class="search-font"
+      id="searchBar"
+      placeholder="Search items"
+      type="text"
+      [(ngModel)]="query"
+    />
+    <button
+      mat-raised-button
+      class="search-font"
+      id="searchButton"
+      (click)="search()"
+    >
+      Search
+    </button>
+  </span>
+  <!--add new item-->
+  <span class="option" routerLink="/additem/{{ collectionDetails._id }}"
+    ><mat-icon>add</mat-icon>Item</span
+  >
+</mat-toolbar>
+
+<span>Count: {{ itemCount }}</span>
+<hr style="margin-bottom: 1px;" />
+
+<div *ngIf="items.length == 0" style="margin-top:20px;">
+  <h1>No Items</h1>
+  <p>{{ message }}</p>
+</div>
+
+<!--text version to showcase grid items, use the below commented out one once
+  the data service and ts file are done since it has {{data from the array}}.-->
+<div class="content">
+  <div fxLayout="row wrap" fxLayoutGap="16px grid" style="text-align: center">
+    <div
+      [fxFlex]="100 / gridColumns + '%'"
+      fxFlex.xs="100%"
+      fxFlex.sm="33%"
+      *ngFor="let item of items"
+    >
+      <mat-card class="mat-elevation-z4">
+        <mat-card-header>
+          <mat-card-title>{{ item.item_title }}</mat-card-title>
+          <button
+            class="close-button"
+            aria-label="Close alert"
+            type="button"
+            (click)="deleteItem(item._id)"
+            data-close
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </mat-card-header>
+        <div *ngIf="item.item_images.length > 0">
+          <img
+          mat-card-image
+          [src]="item.item_images[0].item_image_path"
+          alt="Item image"
+          />
+      </div>
+      <div *ngIf="item.item_images.length < 1">
+        <img
+        class="images"
+        mat-card-image
+        src="./assets/images/bluelogo.png"
+        alt="Item image"
+        />
+      </div>
+        <mat-card-content style="text-align:left;">
+          <p><strong>Description:</strong> {{ item.item_description }}</p>
+          <p *ngIf="item.template_name"><strong>Template:</strong> {{ item.template_name }}</p>
+          <p><strong>Date added:</strong> {{ item.date_created }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button
+            mat-raised-button
+            color="primary"
+            class="manageButton"
+            routerLink="/viewitem/{{ item._id }}"
+          >
+            View
+          </button>
+          <button
+            mat-button
+            class="manageButton"
+            routerLink="/edititem/{{ item._id }}"
+          >
+            Edit
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

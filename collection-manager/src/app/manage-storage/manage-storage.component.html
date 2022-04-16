@@ -1,0 +1,86 @@
+<mat-toolbar color="primary">
+  <span>Storage</span>
+  <!--search-->
+  <span>
+    <input
+      class="search-font"
+      id="searchBar"
+      placeholder="Search storages"
+      type="text"
+      [(ngModel)]="query"
+    />
+    <button
+      mat-raised-button
+      class="search-font"
+      id="searchButton"
+      (click)="search()"
+    >
+      Search
+    </button>
+  </span>
+  <!--add new item-->
+  <span class="option" routerLink="/createstorage"
+    ><mat-icon>add</mat-icon>Storage</span
+  >
+</mat-toolbar>
+
+<span>Count: {{ storageCount }}</span>
+<hr style="margin-bottom: 1px" />
+
+<div *ngIf="storageList.length == 0" style="margin-top: 20px">
+  <h1>No Storage Locations</h1>
+  <p>{{ message }}</p>
+</div>
+
+<div
+  class="content"
+  fxLayout="row wrap"
+  fxLayoutGap="16px grid"
+  style="text-align: center"
+>
+  <div *ngFor="let storage of storageList">
+    <mat-card class="mat-elevation-z4">
+      <mat-card-header>
+        <mat-card-title>{{ storage.storage_name }}</mat-card-title>
+        <button
+          class="close-button"
+          aria-label="Close alert"
+          type="button"
+          (click)="deleteStorage(storage._id)"
+          data-close
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </mat-card-header>
+      <hr style="margin-top: 0" />
+      <mat-card-content style="text-align: left">
+        <b>Location: </b>
+        {{ storage.storage_location }}
+        <br />
+        <b>Storage type:</b>
+        {{ storage.storage_type }}
+        <br />
+        <b>Labeling code:</b>
+        {{ storage.storage_assigned_code }}
+      </mat-card-content>
+      <mat-card-actions>
+        <button
+          mat-raised-button
+          color="primary"
+          class="viewButton"
+          routerLink="/viewstorage/{{ storage._id }}"
+        >
+          View
+        </button>
+        <button
+          mat-raised-button
+          color="white"
+          class="editButton"
+          routerLink="/editstorage/{{ storage._id }}"
+        >
+          Edit
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+<h1 *ngIf="postType == 'selling'">Selling Posting</h1>
+<h1 *ngIf="postType == 'wanted'">Wanted Posting</h1>
+<h1 *ngIf="postType == 'trading'">Trade Posting</h1>
+
+<div *ngIf="posting" class="rounded border border-dark">
+  <div class="row">
+    <div class="col-md-4">
+      <img
+        mat-card-image
+        src="{{ posting.image_path }}"
+        class="posting-image"
+        onerror="if (this.src != '../../assets/images/bluelogo.png') this.src = '../../assets/images/bluelogo.png';"
+        alt="{{ posting.image_alt }}"
+      />
+    </div>
+    <!--Content for sale posting-->
+    <div class="col" *ngIf="posting.type == 'selling'">
+      <h1 style="margin-right: auto">{{ posting.name }}</h1>
+      <p><strong>Description:</strong> {{ posting.description }}</p>
+      <p><strong>Category:</strong> {{ posting.category }}</p>
+      <p><strong>Condition:</strong> {{ posting.condition }}</p>
+      <p><strong>Price:</strong> ${{ posting.price }}</p>
+      <p><strong>Location:</strong> {{ posting.location }}</p>
+      <p><strong>Date posted:</strong> {{ posting.post_date }}</p>
+    </div>
+    <!--Content for wanted posting-->
+    <div class="col" *ngIf="posting.type == 'wanted'">
+        <h1 style="margin-right: auto">{{ posting.name }}</h1>
+        <p><strong>Description:</strong> {{ posting.description }}</p>
+        <p><strong>Category:</strong> {{ posting.category }}</p>
+        <p><strong>Condition:</strong> {{ posting.condition }}</p>
+        <p><strong>Price Range:</strong> ${{ posting.price }}</p>
+        <p><strong>Location:</strong> {{ posting.location }}</p>
+        <p><strong>Date posted:</strong> {{ posting.post_date }}</p>
+    </div>
+    <!--Content for trade posting-->
+    <div class="col" *ngIf="posting.type == 'trading'">
+        <h1 style="margin-right: auto">{{ posting.name }}</h1>
+        <p><strong>Description:</strong> {{ posting.description }}</p>
+      <p><strong>Category:</strong> {{ posting.category }}</p>
+      <p><strong>Condition:</strong> {{ posting.condition }}</p>
+      <p><strong>Location:</strong> {{ posting.location }}</p>
+      <p><strong>Date posted:</strong> {{ posting.post_date }}</p>
+      <p><strong>Looking for:</strong> {{ posting.wanted }}</p>
+    </div>
+  </div>
+  <!--button to open chat with the user who posted the listing-->
+  <div style="margin-right: auto; text-align: right">
+    <button mat-raised-button color="primary" (click)="notifyUser(posting.user_id)" routerLink="{{ chatRoute }}">
+      Notify User
+    </button>
+  </div>
+</div>
+<h2 *ngIf="!posting">Loading... possible error</h2>

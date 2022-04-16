@@ -1,0 +1,142 @@
+<h1 *ngIf="!user">User doesn't exist</h1>
+<div *ngIf="user" class="content">
+  <mat-toolbar color="primary">
+    <span>Profile: {{ user.username }}</span>
+    <!--search-->
+    <span>
+      <button
+        *ngIf="!viewingSelf"
+        mat-raised-button
+        color="primary"
+        class="nav-button"
+        routerLink="/chat"
+      >
+        Go To Chat
+      </button>
+      <button
+        *ngIf="viewingSelf"
+        mat-raised-button
+        color="primary"
+        class="nav-button"
+        routerLink="/settings"
+      >
+        Settings
+      </button>
+    </span>
+  </mat-toolbar>
+  <hr style="margin-bottom: 30px" />
+  <!--user details-->
+  <div class="content">
+    <div fxLayout="row">
+      <div [fxFlex]="30" style="padding-left: 18px">
+        <img
+          mat-card-image
+          style="width: 100%"
+          src="../../assets/images/bluelogo.png"
+          alt="profile image"
+        />
+      </div>
+      <div class="col">
+        <!--only show real name if viewing own account-->
+        <h2 *ngIf="viewingSelf"><strong>Username:</strong> {{ user.username }}</h2>
+        <h2 *ngIf="viewingSelf"><strong>Email:</strong> {{ user.email }}</h2>
+        <h2><strong>Date created:</strong> {{ user.date_created }}</h2>
+        <h2><strong>Role:</strong> {{ user.role }}</h2>
+        <!--number of collections-->
+        <h2 *ngIf="viewingSelf">
+          <strong>Number of collections: </strong>
+          <span *ngIf="collectionAmount == -1">Loading...</span>
+          <span *ngIf="collectionAmount == -2">Error!</span>
+          <span *ngIf="collectionAmount >= 0">{{ collectionAmount }}</span>
+        </h2>
+      </div>
+    </div>
+  </div>
+  <!--listings if viewing someone else-->
+  <div *ngIf="!viewingSelf">
+    <h1>User Listings</h1>
+    <span>Count: {{ postings.length }}</span>
+    <hr />
+    <div *ngIf="postings.length == 0">
+      <h1>This user has no market listings</h1>
+    </div>
+    <div *ngIf="postings.length > 0">
+      <div
+        fxLayout="row wrap"
+        fxLayoutGap="16px grid"
+        style="text-align: center"
+      >
+        <div
+          [fxFlex]="100 / gridColumns + '%'"
+          fxFlex.xs="100%"
+          fxFlex.sm="33%"
+          *ngFor="let post of postings"
+        >
+          <!--Card for a posting-->
+          <mat-card class="mat-elevation-z4">
+            <mat-card-header>
+              <mat-card-title>{{ post.name }}</mat-card-title>
+            </mat-card-header>
+            <img
+              mat-card-image
+              src="{{ post.image_path }}"
+              onerror="if (this.src != '../../assets/images/bluelogo.png') this.src = '../../assets/images/bluelogo.png';"
+              alt="{{ post.image_alt }}"
+            />
+            <!--Content for selling-->
+            <mat-card-content *ngIf="post.type == 'selling'">
+              <p><strong>Type:</strong> {{ post.type }}</p>
+              <p><strong>Description:</strong> {{ post.description }}</p>
+              <p *ngIf="post.category != 'N/A'">
+                <strong>Category:</strong> {{ post.category }}
+              </p>
+              <p *ngIf="post.condition != 'N/A'">
+                <strong>Condition:</strong> {{ post.condition }}
+              </p>
+              <p><strong>Price:</strong> ${{ post.price }}</p>
+              <p><strong>Date posted:</strong> {{ post.post_date }}</p>
+            </mat-card-content>
+            <!--Content for wanted-->
+            <mat-card-content *ngIf="post.type == 'wanted'">
+              <p><strong>Type:</strong> {{ post.type }}</p>
+              <p><strong>Description:</strong> {{ post.description }}</p>
+              <p *ngIf="post.category != 'N/A'">
+                <strong>Category:</strong> {{ post.category }}
+              </p>
+              <p *ngIf="post.condition != 'N/A'">
+                <strong>Condition:</strong> {{ post.condition }}
+              </p>
+              <p><strong>Price Range:</strong> ${{ post.price }}</p>
+              <p><strong>Date posted:</strong> {{ post.post_date }}</p>
+            </mat-card-content>
+            <!--Content for trading-->
+            <mat-card-content *ngIf="post.type == 'trading'">
+              <p><strong>Type:</strong> {{ post.type }}</p>
+              <p><strong>Description:</strong> {{ post.description }}</p>
+              <p *ngIf="post.category != 'N/A'">
+                <strong>Category:</strong> {{ post.category }}
+              </p>
+              <p *ngIf="post.condition != 'N/A'">
+                <strong>Condition:</strong> {{ post.condition }}
+              </p>
+              <p><strong>Date posted:</strong> {{ post.post_date }}</p>
+              <p><strong>Looking for:</strong> {{ post.wanted }}</p>
+            </mat-card-content>
+            <!--view button-->
+            <mat-card-actions>
+              <button
+                mat-raised-button
+                color="primary"
+                id="viewButton"
+                routerLink="/viewposting/{{ post.listing_id }}"
+              >
+                View Details
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+        <h2 *ngIf="postings.length == 0">No postings of this type!</h2>
+      </div>
+    </div>
+  </div>
+</div>

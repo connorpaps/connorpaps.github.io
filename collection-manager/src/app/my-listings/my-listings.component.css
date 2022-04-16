@@ -1,0 +1,48 @@
+mat-toolbar {
+  justify-content: space-between;
+  min-width: 800px;
+  margin-bottom: 20px;
+}
+
+.content {
+  padding: 16px;
+  display: flex;
+}
+
+.content > mat-card {
+  margin-bottom: 16px;
+}
+
+.column-label {
+  margin-right: 8px;
+  font-size: 1rem;
+}
+
+.manage-button {
+  width: auto;
+  box-shadow: 1px 1px 2px 2px #888888;
+}
+
+.close-button {
+  position: absolute;
+  border-radius: 5px;
+  right: 5px;
+  border: none;
+  font-size: x-large;
+  top: 5px;
+  cursor: pointer;
+  outline: none;
+}
+
+mat-card-content {
+  text-align: left;
+}
+
+mat-card-actions {
+  display: inline;
+}
+
+mat-icon {
+  margin-top: -4px;
+  vertical-align: middle;
+}

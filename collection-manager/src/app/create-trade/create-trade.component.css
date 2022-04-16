@@ -1,0 +1,107 @@
+.my-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  padding-left: 15px;
+  color: black;
+}
+.full-width {
+  width: 100%;
+}
+
+.selects {
+  margin-top: 18px;
+  width: 100%;
+}
+
+.selectsTwo {
+  margin-top: 32px;
+  margin-bottom: 18px;
+  width: 100%;
+}
+
+.options {
+  padding: 20px;
+}
+
+.my-card {
+  /*  not needed styles to reflect it */
+  padding: 10px;
+  color: white;
+  width: 100%;
+  /* needed styles below */
+  display: flex;
+  justify-content: space-between;
+}
+
+#userImage {
+  width: 50%;
+  min-width: 250px;
+  justify-content: center;
+}
+
+.imageContent {
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  max-width: 400px;
+  min-width: 400px;
+}
+
+.labels {
+  padding-left: -200px;
+}
+
+.labelContent {
+  min-width: 120px;
+}
+
+.labelContent label {
+  color: black;
+  display: flex;
+  align-items: center;
+  padding-top: 20px;
+  font-weight: bold;
+}
+
+#collName {
+  padding-top: 28px;
+}
+
+#itemName {
+  padding-top: 26px;
+}
+
+#description {
+  padding-top: 29px;
+}
+
+#condition {
+  padding-top: 30px;
+}
+
+#lookingFor {
+  padding-top: 25px;
+}
+
+#createButton {
+  justify-content: right;
+}
+
+.mat-card-actions {
+  float: right;
+  margin-right: 20px;
+}
+
+.img-with-text {
+  text-align: justify;
+}
+
+.img-with-text img {
+  display: block;
+  margin: 0 auto;
+}
+
+.textLabel {
+  margin-bottom: 100px;
+}

@@ -1,0 +1,50 @@
+mat-card {
+    max-width: 500px;
+    text-align: center;
+  }
+  
+  mat-form-field {
+    display: block;
+    width: 350px;
+    max-width: 350px;
+  }
+  
+  .spantext {
+    width: 50%;
+    display: table-cell;
+    vertical-align: middle;
+  }
+  
+  .card-wrapper {
+    top: 8%;
+    left: 15%;
+    right: 105%;
+  }
+  
+  .textColumn {
+    margin-left: 10px;
+    margin-top: 50px;
+    margin-bottom: 10px;
+  }
+  
+  .textColumn p {
+    font-size: large;
+    margin-top: 10px;
+    margin-bottom: 35px;
+  }
+  
+  .form-control {
+    margin-bottom: 10px;
+  }
+  
+  .close-button {
+    position: absolute;
+    border-radius: 5px;
+    right: 5px;
+    border: none;
+    font-size: x-large;
+    top: 5px;
+    cursor: pointer;
+    outline: none;
+  }
+  

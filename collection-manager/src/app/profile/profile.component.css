@@ -1,0 +1,18 @@
+mat-toolbar {
+  justify-content: space-between;
+  min-width: 800px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-weight: normal;
+  font-size: large;
+}
+
+.nav-button {
+  display: inline-block;
+  color: white;
+  background-color: rgb(25, 118, 210);
+  right: 0;
+  position: relative;
+}

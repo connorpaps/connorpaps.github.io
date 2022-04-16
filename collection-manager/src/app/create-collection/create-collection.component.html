@@ -1,0 +1,88 @@
+<h1>Add New Collection</h1>
+<div class="card-wrapper">
+  <form (ngSubmit)="onSubmit()">
+    <div fxLayout="row">
+      <mat-card fxLayout="row" fxFlex="80%" class="center space-top">
+        <mat-card-content fxLayout.gt-sm="row">
+          <!--1st Column for image/edit-->
+          <div fxLayout.gt-sm="column" fxFlex.gt-sm="40%" class="imageColumn">
+            <img
+              mat-card-image
+              src=""
+              onerror="if (this.src != '../../assets/images/bluelogo.png') this.src = '../../assets/images/bluelogo.png';"
+              alt=""
+            />
+            <!--Replace with proper image editing support-->
+            <a href="">Edit Image</a>
+          </div>
+          <!--2nd Column for text names-->
+          <div fxLayout.gt-sm="column" fxFlex.gt-sm="40%" class="textColumn">
+            <p>Collection Name</p>
+            <p>Description</p>
+            <p>Storage Code</p>
+          </div>
+          <!--3rd Column for text fields-->
+          <form
+            #editForm="ngForm"
+            fxLayout.gt-sm="column"
+            fxFlex.gt-sm="40%"
+            class="fieldsColumn"
+          >
+            <mat-form-field class="full-width-input">
+              <input
+                matInput
+                name="collectionname"
+                required
+                autofocus
+                placeholder="Enter name.."
+                [(ngModel)]="collectionModel.collection_name"
+              />
+              <mat-error>Collection name cannot be empty.</mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width-input">
+              <textarea
+                matInput
+                name="description"
+                placeholder="Enter description.."
+                required
+                autofocus
+                [(ngModel)]="collectionModel.collection_description"
+              ></textarea>
+              <mat-error>Description cannot be empty.</mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width-input">
+              <input
+                matInput
+                placeholder="Enter storage code.."
+                name="storagecode"
+                required
+                autofocus
+              />
+              <mat-error>Storage code cannot be empty.</mat-error>
+            </mat-form-field>
+          </form>
+          <!--4th Column for created/date/reference-->
+          <div fxLayout.gt-sm="column" fxFlex.gt-sm="40%" class="textColumn2">
+            <!--Update button with actual data updating in the ts-->
+            <button
+              mat-raised-button
+              color="accent"
+              type="submit"
+              [disabled]="loading"
+              class="submitCollection"
+            >
+              <span *ngIf="loading; else login">
+                <span>&nbsp;&nbsp;&nbsp; Processing Request </span>
+              </span>
+              <!-- login template that appears if done loading-->
+              <ng-template #login>
+                <span>&nbsp;&nbsp;&nbsp; Create </span>
+              </ng-template>
+            </button>
+          </div>
+        </mat-card-content>
+        <mat-card-footer> </mat-card-footer>
+      </mat-card>
+    </div>
+  </form>
+</div>

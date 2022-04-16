@@ -1,0 +1,103 @@
+<h1>Add Item to {{ collectionName }}</h1>
+<div class="card-wrapper">
+  <div fxLayout="row">
+    <mat-card fxLayout="row" fxFlex="80%" class="center space-top">
+      <mat-card-content fxLayout.gt-sm="row">
+        <!--form for new item details-->
+        <form #addItemForm="ngForm" (ngSubmit)="onSubmit()">
+          <!--image selection-->
+          <div fxLayout.gt-sm="column" fxFlex.gt-sm="30%" class="imageColumn">
+            <img
+              mat-card-image
+              src="../../assets/images/bluelogo.png"
+              alt="selected image"
+            />
+            <!--Replace with proper image editing support-->
+            <a href="">Add Images</a>
+          </div>
+          <div fxLayout.gt-sm="column" fxFlex.gt-sm="45%">
+            <div class="bordered-section">
+              <!--name field-->
+              <strong>Name</strong>
+              <mat-form-field class="full-width-input">
+                <input
+                  matInput
+                  name="name"
+                  required
+                  autofocus
+                  [(ngModel)]="itemModel.item_title"
+                />
+                <mat-error>Item name cannot be empty.</mat-error>
+              </mat-form-field>
+              <!--description field-->
+              <strong>Description</strong>
+              <mat-form-field class="full-width-input">
+                <textarea
+                  matInput
+                  name="description"
+                  required
+                  autofocus
+                  [(ngModel)]="itemModel.item_description"
+                ></textarea>
+                <mat-error>Description cannot be empty.</mat-error>
+              </mat-form-field>
+            </div>
+            <!--template info-->
+            <div class="bordered-section min-height">
+              <!--name field-->
+              <strong>Template</strong>
+              <mat-form-field class="full-width-input">
+                <input
+                  matInput
+                  name="template"
+                  autofocus
+                  [(ngModel)]="itemModel.item_template"
+                />
+                <mat-error>Item name cannot be empty.</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxLayout.gt-sm="column" fxFlex.gt-sm="25%">
+            <!--Storage Fields-->
+            <div class="bordered-section">
+              <!--storage note field-->
+              <strong>Storage Notes</strong>
+              <mat-form-field class="full-width-input">
+                <textarea
+                  matInput
+                  name="storage-note"
+                  autofocus
+                  [(ngModel)]="itemModel.item_storageNote"
+                ></textarea>
+                <mat-error>Storage notes cannot be empty.</mat-error>
+              </mat-form-field>
+            </div>
+            <!--Add button-->
+            <button
+              mat-raised-button
+              color="accent"
+              type="submit"
+              class="submitButton"
+            >
+              <p
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  margin-top: 10px;
+                  font-size: larger;
+                "
+              >
+                Add Item
+              </p>
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+      <mat-card-footer>
+        <button class="closeButton" mat-button (click)="onClose()" id="closeX">
+          X
+        </button>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</div>

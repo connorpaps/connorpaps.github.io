@@ -1,0 +1,69 @@
+<!-- Toolbar -->
+<mat-toolbar class="toolbar" color="primary" role="banner">
+  <img width="90" alt="Angular Logo" src="../assets/images/bluelogotrans.png" />
+
+  <a class="nav-title" [routerLink]="['/']"><span>CollectionManager</span></a>
+  <div>
+    <a class="nav-item" *ngIf="token" [routerLink]="['/managecollections']"
+      ><span>My Collections</span></a
+    >
+    <a class="nav-item" *ngIf="token" [routerLink]="['/managestorage']"
+      ><span>Storage Boxes</span></a
+    >
+    <a class="nav-item" *ngIf="token" [routerLink]="['/market']"
+      ><span>Market</span></a
+    >
+    <a class="nav-item" *ngIf="token" [routerLink]="['/chat']"
+      ><span>Chat</span></a
+    >
+    <a class="nav-item" *ngIf="token" [routerLink]="['/users']"
+      ><span>Find Users</span></a
+    >
+    <a class="nav-item" *ngIf="token" [routerLink]="['/articles']"
+      ><span>Knowledge Hub</span></a
+    >
+    <a class="nav-item" *ngIf="token" [routerLink]="['/gettingstarted']"
+      ><span>Get Started</span></a
+    >
+    <a
+      class="nav-item"
+      *ngIf="token && role == 'administrator'"
+      [routerLink]="['/analytics']"
+      ><span>Dev</span></a
+    >
+  </div>
+
+  <div class="spacer"></div>
+
+  <!--only shows when not logged in-->
+  <button *ngIf="!token" mat-button [routerLink]="['/login']">
+    <mat-icon>person</mat-icon>
+    <span> Log In </span>
+  </button>
+
+  <!--only shows when logged in-->
+  <button *ngIf="token" mat-button [matMenuTriggerFor]="userMenu">
+    <mat-icon>person</mat-icon>
+    <span fxShow fxHide.xs> {{ token.username }} </span>
+  </button>
+  <mat-menu
+    #userMenu="matMenu"
+    xPosition="before"
+    yPosition="above"
+    [overlapTrigger]="false"
+  >
+    <a mat-menu-item [routerLink]="['/profile/me']">
+      <mat-icon>image_search</mat-icon>
+      <span style="color: black">Profile</span>
+    </a>
+    <a mat-menu-item (click)="logout()">
+      <mat-icon>exit_to_app</mat-icon>
+      <span style="color: black">Log out</span>
+    </a>
+  </mat-menu>
+</mat-toolbar>
+
+<div class="content" role="main">
+  <!--the current page is displayed by this router-outlet-->
+  <router-outlet></router-outlet>
+</div>
